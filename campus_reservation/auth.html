@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Campus Reservation - Auth</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .tab-buttons { display:flex; gap:1rem; margin-bottom:1rem; }
+    .tab-buttons button { flex:1; }
+    .form-container { display:none; }
+    .form-container.active { display:block; }
+  </style>
+</head>
+<body class="center">
+  <div class="card">
+    <h1>Campus Reservation</h1>
+    
+    <div class="tab-buttons">
+      <button id="loginTab">Login</button>
+      <button id="registerTab">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="form-container active">
+      <form id="login">
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <button type="submit">Login</button>
+        <p id="loginMsg" class="muted"></p>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" class="form-container">
+      <form id="register">
+        <label>Name</label>
+        <input type="text" name="name" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <label>Role</label>
+        <select name="role">
+          <option value="student">Student</option>
+          <option value="faculty">Faculty</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit">Register</button>
+        <p id="regMsg" class="muted"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

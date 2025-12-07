@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campus Reservation Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="center">
+  <div class="card">
+    <h1>Campus Reservation</h1>
+    <form id="loginForm">
+      <label>Email</label>
+      <input type="email" name="email" required />
+      <label>Password</label>
+      <input type="password" name="password" required />
+      <button type="submit">Login</button>
+      <p id="loginMsg" class="muted"></p>
+    </form>
+
+    <!-- Register button -->
+    <div style="margin-top:1rem; text-align:center;">
+      <button id="registerBtn" type="button">Register</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      const password = form.password.value;
+      const res = await fetch('auth.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email, password})
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        document.getElementById('loginMsg').textContent = data.error || 'Login failed';
+      } else {
+        window.location.href = 'index.php';
+      }
+    });
+
+    // Redirect to register.html
+    document.getElementById('registerBtn').addEventListener('click', () => {
+      window.location.href = 'register.html';
+    });
+  </script>
+</body>
+</html>
